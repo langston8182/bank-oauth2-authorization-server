@@ -1,0 +1,25 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /auth
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    # Changer en 127.0.0.1 si le serveur tourne sur un IDE et non sur un container
+    host: 172.17.0.1
+    port: 3307
+    url: jdbc:mariadb://${spring.datasource.host}:${spring.datasource.port}/bank
+    username: spring
+    password: spring
+    driver-class-name: org.mariadb.jdbc.Driver
+    initialization-mode: always
+    validationQuery:
+      SELECT 1
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
