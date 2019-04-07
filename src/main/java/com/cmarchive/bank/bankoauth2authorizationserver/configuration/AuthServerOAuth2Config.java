@@ -50,7 +50,7 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
                 .authorizedGrantTypes("authorization_code", "password")
                 .scopes("user_info")
                 .autoApprove(true)
-                .redirectUris("http://localhost:8200/login")
+                .redirectUris("http://localhost:8090/login", "http://localhost:8200/login")
                 .secret(passwordEncoder.encode("password"));
     }
 
