@@ -10,7 +10,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
-    # Changer en 127.0.0.1 si le serveur tourne sur un IDE et non sur un container
+    # 172.17.0.1 si le service tourne dans un container localhost sinon
     host: 172.17.0.1
     port: 3307
     url: jdbc:mariadb://${spring.datasource.host}:${spring.datasource.port}/bank

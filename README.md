@@ -59,9 +59,22 @@ Pour compiler le projet et créer l'image docker exécuter :
 \
 `mvn package`
 
-Pour push l'image sur dockerHug, exécuter:
+Pour push l'image sur dockerHub, exécuter:
 \
 `mvn dockerfile:push`
+
+# Configuration
+
+Dans le fichier application.yml modifier les adresses Ip suivant si le serveur tourne en local ou dans un container.
+\
+Si necéssaire, modifier la methode
+com.cmarchive.bank.bankoauth2authorizationserver.configuration.AuthServerOAuth2Config.configure(org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer)
+\
+pour ajouter les Ip clientes utilisant le service d'autorisation.
+
+Ip serveur mariadb dans un container : 172.17.0.1
+Ip service interaction dans un container : 172.22.0.1
+
 
 # Contributeur
 

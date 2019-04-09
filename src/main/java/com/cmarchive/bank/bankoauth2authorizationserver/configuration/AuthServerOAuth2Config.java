@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -50,7 +49,10 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
                 .authorizedGrantTypes("authorization_code", "password")
                 .scopes("user_info")
                 .autoApprove(true)
-                .redirectUris("http://localhost:8090/login", "http://localhost:8200/login")
+                .redirectUris("http://localhost:8090/login",
+                        "http://127.0.0.1:8200/login",
+                        "http://localhost:8200/login",
+                        "http://172.22.0.1:8200/login")
                 .secret(passwordEncoder.encode("password"));
     }
 
