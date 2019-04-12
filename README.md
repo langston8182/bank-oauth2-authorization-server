@@ -46,9 +46,10 @@ Pour le premier démarrage configurer la base de donnée afin d'ajouter l'utilis
 docker exec -ti mariadb bash
 mysql -u root -p
 <Mot de passe root>
-CREATE USER ’spring’@‘localhost' IDENTIFIED BY ‘spring’;
-GRANT ALL PRIVILEGES ON * . * TO ‘spring’@‘localhost';
+CREATE USER ’spring’ IDENTIFIED BY ‘spring’;
+GRANT ALL PRIVILEGES ON * . * TO ‘spring’;
 FLUSH PRIVILEGES;
+create database bank;
 use bank;
 show tables;
 ```
@@ -73,6 +74,7 @@ com.cmarchive.bank.bankoauth2authorizationserver.configuration.AuthServerOAuth2C
 pour ajouter les Ip clientes utilisant le service d'autorisation.
 
 Ip serveur mariadb dans un container : 172.17.0.1
+\
 Ip service interaction dans un container : 172.22.0.1
 
 
