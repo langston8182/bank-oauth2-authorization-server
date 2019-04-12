@@ -54,6 +54,22 @@ use bank;
 show tables;
 ```
 
+# Kubernetes
+L'ensemble des configurations k8s se trouvent dans le projet Gihub\
+https://github.com/langston8182/kubernetes-bank
+
+Pour lancer le service
+`kubectl create -f authorization-service.yaml`
+
+Pour lancer le deploiement
+`kubectl create -f authorization-deployment.yaml`
+
+Pour lancer le service db
+`kubectl create -f db-service.yaml`
+
+Pour lancer le deploiement db
+`kubectl create -f db-deployment.yaml`
+
 # Maven
 
 Pour compiler le projet et créer l'image docker exécuter :
@@ -73,10 +89,13 @@ com.cmarchive.bank.bankoauth2authorizationserver.configuration.AuthServerOAuth2C
 \
 pour ajouter les Ip clientes utilisant le service d'autorisation.
 
-Ip serveur mariadb dans un container : 172.17.0.1
+Ip serveur mariadb dans un container docker : 172.17.0.1
+\
+Ip serveur mariadb dans k8s : db-service
 \
 Ip service interaction dans un container : 172.22.0.1
-
+\
+Ip service interaction dans k8s : 192.168.99.100 (minikube ip)
 
 # Contributeur
 
