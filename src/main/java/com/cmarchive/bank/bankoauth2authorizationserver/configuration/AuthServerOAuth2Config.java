@@ -15,6 +15,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+import java.util.List;
+
 @Configuration
 @EnableAuthorizationServer
 public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter {
@@ -28,6 +30,9 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private ConfigMap configMap;
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
@@ -44,17 +49,15 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        List<String> authorizedGrantTypes = configMap.getAuthorizedGrantTypes();
+        List<String> redirectUris = configMap.getRedirectUris();
         clients.inMemory()
-                .withClient("client")
-                .authorizedGrantTypes("authorization_code", "password")
-                .scopes("user_info")
+                .withClient(configMap.getClient())
+                .authorizedGrantTypes(authorizedGrantTypes.toArray(new String[0]))
+                .scopes(configMap.getScopes())
                 .autoApprove(true)
-                .redirectUris("http://localhost:8090/login",
-                        "http://127.0.0.1:8200/login",
-                        "http://localhost:8200/login",
-                        "http://172.22.0.1:8200/login",
-                        "http://192.168.99.100:30200/login")
-                .secret(passwordEncoder.encode("password"));
+                .redirectUris(redirectUris.toArray(new String[0]))
+                .secret(passwordEncoder.encode(configMap.getPassword()));
     }
 
     @Override
