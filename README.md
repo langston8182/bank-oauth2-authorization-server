@@ -82,12 +82,7 @@ Pour push l'image sur dockerHub, exécuter:
 
 # Configuration
 
-Dans le fichier application.yml modifier les adresses Ip suivant si le serveur tourne en local ou dans un container.
-\
-Si necéssaire, modifier la methode
-com.cmarchive.bank.bankoauth2authorizationserver.configuration.AuthServerOAuth2Config.configure(org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer)
-\
-pour ajouter les Ip clientes utilisant le service d'autorisation.
+Dans le fichier application.yml modifier les adresses Ip suivant si le serveur tourne en local ou dans un container. :
 
 Ip serveur mariadb dans un container docker : 172.17.0.1
 \
@@ -96,6 +91,14 @@ Ip serveur mariadb dans k8s : db-service
 Ip service interaction dans un container : 172.22.0.1
 \
 Ip service interaction dans k8s : 192.168.99.100 (minikube ip)
+
+Ajouter les ips des adresse clientes utilisant le serveur d'autorisation dans le fichier application.yml.
+
+## Spring cloud Kubernetes
+
+Les configuration decrites precedemment peuvent etre surchargee a chaud dans le fichier configMap de la configuration k8s.
+\
+Le nom de l'application définié dans la fichier _application.yaml_ doit etre le meme que le nom de la configMap dans k8s
 
 # Contributeur
 
