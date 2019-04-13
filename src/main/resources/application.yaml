@@ -37,7 +37,6 @@ security:
     - password
   scopes: user_info
   redirectUris:
-    - http://localhost:8090/login
     - http://127.0.0.1:8200/login
     - http://localhost:8200/login
     - http://172.22.0.1:8200/login
