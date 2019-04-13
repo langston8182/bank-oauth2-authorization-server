@@ -2,7 +2,19 @@ server:
   port: 8090
   servlet:
     context-path: /auth
+management:
+  endpoint:
+    restart:
+      enabled: true
 spring:
+  application:
+    name: authorization
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+        mode: polling
+        period: 1000
   jpa:
     hibernate:
       ddl-auto: update
@@ -23,3 +35,17 @@ spring:
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
+
+security:
+  client: client
+  authorizedGrantTypes:
+    - authorization_code
+    - password
+  scopes: user_info
+  redirectUris:
+    - http://localhost:8090/login
+    - http://127.0.0.1:8200/login
+    - http://localhost:8200/login
+    - http://172.22.0.1:8200/login
+    - http://192.168.99.100:30200/login
+  password: password
