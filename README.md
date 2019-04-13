@@ -84,7 +84,7 @@ Pour push l'image sur dockerHub, exécuter:
 
 Dans le fichier application.yml modifier les adresses Ip suivant si le serveur tourne en local ou dans un container. :
 
-Ip serveur mariadb dans un container docker : 172.17.0.1
+Ip serveur mariadb dans un container docker : 172.17.0.1 (docker inspect <id_container> et l'ip est le parametre Gatteway)
 \
 Ip serveur mariadb dans k8s : db-service
 \
