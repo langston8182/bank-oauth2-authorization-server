@@ -9,12 +9,6 @@ management:
 spring:
   application:
     name: authorization
-  cloud:
-    kubernetes:
-      reload:
-        enabled: true
-        mode: polling
-        period: 1000
   jpa:
     hibernate:
       ddl-auto: update

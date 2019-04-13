@@ -100,6 +100,13 @@ Les configuration decrites precedemment peuvent etre surchargee a chaud dans le 
 \
 Le nom de l'application définié dans la fichier _application.yaml_ doit etre le meme que le nom de la configMap dans k8s
 
+Pour changer un parametre, modifier le fichier authorization-cm.yaml puis recharger le fichier configMap et le fichier de deploiement authorization
+```
+kubectl replace -f cm authorization
+kubectl delete deployment authorization-deployment
+kubectl create -f authorization-deployment.yaml
+```
+
 # Contributeur
 
 Cyril Marchive (cyril.marchive@gmail.com)
