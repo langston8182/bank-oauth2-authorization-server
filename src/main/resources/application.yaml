@@ -17,7 +17,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
     # 172.17.0.1(Docker) ou db-service(k8s) si le service tourne dans un container localhost sinon
-    host: db-service
+    host: localhost
     port: 3307
     url: jdbc:mariadb://${spring.datasource.host}:${spring.datasource.port}/bank
     username: spring
@@ -41,4 +41,5 @@ security:
     - http://localhost:8200/login
     - http://172.22.0.1:8200/login
     - http://192.168.99.100:30200/login
+    - http://localhost:3000
   password: password
