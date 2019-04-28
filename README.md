@@ -72,9 +72,13 @@ Pour lancer le deploiement db
 
 # Maven
 
-Pour compiler le projet et créer l'image docker exécuter :
+Pour compiler le projet :
 \
 `mvn package`
+
+Pour construire l'image Docker :
+\
+`mvn dockerfile:build`
 
 Pour push l'image sur dockerHub, exécuter:
 \
