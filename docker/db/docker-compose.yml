@@ -7,4 +7,4 @@ db:
     MYSQL_USER: spring
     MYSQL_PASSWORD: spring
   ports:
-  - 3307:3306
+  - 3306:3306
