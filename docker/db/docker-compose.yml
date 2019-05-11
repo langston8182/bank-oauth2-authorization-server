@@ -1,4 +1,4 @@
-db:
+db-service:
   image: mariadb
   container_name: mariadb
   environment:
