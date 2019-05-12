@@ -1,48 +1,46 @@
-# Version
+# Authorization server
 
-- **1.0.0-SNAPSHOT** : initialisation du projet
+## Version
 
-# Objectif
+* **1.0.0-SNAPSHOT** : initialisation du projet
 
-Serveur d'autorisation Oauth2 basé sur le grant _authorization_code_.
+## Objectif
 
-# Technique
+Serveur d'autorisation Oauth2 basé sur le grant _authorization\_code_.
+
+## Technique
 
 Les services enregistrés sont les suivants :
-- service d'interaction bancaire : http://localhost:8200/login
-\
-Lien github : https://github.com/langston8182/service-interaction
 
-Le formulaire de login est celui par defaut de spring security. il est situé au sein du serveur d'autorisation. 
-\
-Port d'écoute : 8090
+* service d'interaction bancaire : [http://localhost:8200/login](http://localhost:8200/login)
+
+  \
+
+  Lien github : [https://github.com/langston8182/service-interaction](https://github.com/langston8182/service-interaction)
+
+Le formulaire de login est celui par defaut de spring security. il est situé au sein du serveur d'autorisation.  Port d'écoute : 8090
 
 **Liens oauth2** :
-- Récupérer le token : http://localhost:8090/auth/oauth/token
-- Autorisation : http://localhost:8090/auth/oauth/authorize
-- Information de l'utilisateur : http://localhost:8090/auth/user/me
 
-**Postman** :
-Se loguer pour récupérer le token JWT
+* Récupérer le token : [http://localhost:8090/auth/oauth/token](http://localhost:8090/auth/oauth/token)
+* Autorisation : [http://localhost:8090/auth/oauth/authorize](http://localhost:8090/auth/oauth/authorize)
+* Information de l'utilisateur : [http://localhost:8090/auth/user/me](http://localhost:8090/auth/user/me)
 
-![postman](images/postman.png)
-\
-![postman](images/postman2.png)
-\
-![postman](images/postman3.png)
+**Postman** : Se loguer pour récupérer le token JWT
 
-# Docker
+![postman](.gitbook/assets/postman.png)  ![postman](.gitbook/assets/postman2.png)  ![postman](.gitbook/assets/postman3.png)
 
-Utiliser docker-compose pour lancer le serveur.
-`docker-compose up`
+## Docker
 
-## Mariadb
+Utiliser docker-compose pour lancer le serveur. `docker-compose up`
 
-Utiliser docker-compose dans le repertoire docker/db pour lancer le serveur mariadb.
-`docker-compose up`
+### Mariadb
+
+Utiliser docker-compose dans le repertoire docker/db pour lancer le serveur mariadb. `docker-compose up`
 
 Pour le premier démarrage configurer la base de donnée afin d'ajouter l'utilisateur _spring_ avec le mot de passe _spring_ et tous les privileges.
-```
+
+```text
 docker exec -ti mariadb bash
 mysql -u root -p
 <Mot de passe root>
@@ -54,63 +52,47 @@ use bank;
 show tables;
 ```
 
-# Kubernetes
-L'ensemble des configurations k8s se trouvent dans le projet Gihub\
-https://github.com/langston8182/kubernetes-bank
+## Kubernetes
 
-Pour lancer le service
-`kubectl create -f authorization-service.yaml`
+L'ensemble des configurations k8s se trouvent dans le projet Gihub [https://github.com/langston8182/kubernetes-bank](https://github.com/langston8182/kubernetes-bank)
 
-Pour lancer le deploiement
-`kubectl create -f authorization-deployment.yaml`
+Pour lancer le service `kubectl create -f authorization-service.yaml`
 
-Pour lancer le service db
-`kubectl create -f db-service.yaml`
+Pour lancer le deploiement `kubectl create -f authorization-deployment.yaml`
 
-Pour lancer le deploiement db
-`kubectl create -f db-deployment.yaml`
+Pour lancer le service db `kubectl create -f db-service.yaml`
 
-# Maven
+Pour lancer le deploiement db `kubectl create -f db-deployment.yaml`
 
-Pour compiler le projet :
-\
-`mvn package`
+## Maven
 
-Pour construire l'image Docker :
-\
-`mvn dockerfile:build`
+Pour compiler le projet :  `mvn package`
 
-Pour push l'image sur dockerHub, exécuter:
-\
-`mvn dockerfile:push`
+Pour construire l'image Docker :  `mvn dockerfile:build`
 
-# Configuration
+Pour push l'image sur dockerHub, exécuter:  `mvn dockerfile:push`
+
+## Configuration
 
 Dans le fichier application.yml modifier les adresses Ip suivant si le serveur tourne en local ou dans un container. :
 
-Ip serveur mariadb dans un container docker : 172.17.0.1 (docker inspect <id_container> et l'ip est le parametre Gatteway)
-\
-Ip serveur mariadb dans k8s : db-service
-\
-Ip service interaction dans un container : 172.22.0.1
-\
-Ip service interaction dans k8s : 192.168.99.100 (minikube ip)
+Ip serveur mariadb dans un container docker : 172.17.0.1 \(docker inspect  et l'ip est le parametre Gatteway\)  Ip serveur mariadb dans k8s : db-service  Ip service interaction dans un container : 172.22.0.1  Ip service interaction dans k8s : 192.168.99.100 \(minikube ip\)
 
 Ajouter les ips des adresse clientes utilisant le serveur d'autorisation dans le fichier application.yml.
 
-## Spring cloud Kubernetes
+### Spring cloud Kubernetes
 
-Les configuration decrites precedemment peuvent etre surchargee a chaud dans le fichier configMap de la configuration k8s.
-\
-Le nom de l'application définié dans la fichier _application.yaml_ doit etre le meme que le nom de la configMap dans k8s
+Les configuration decrites precedemment peuvent etre surchargee a chaud dans le fichier configMap de la configuration k8s.  Le nom de l'application définié dans la fichier _application.yaml_ doit etre le meme que le nom de la configMap dans k8s
 
 Pour changer un parametre, modifier le fichier authorization-cm.yaml puis recharger le fichier configMap et le fichier de deploiement authorization
-```
+
+```text
 kubectl replace -f cm authorization
 kubectl delete deployment authorization-deployment
 kubectl create -f authorization-deployment.yaml
 ```
 
-# Contributeur
+## Contributeur
 
-Cyril Marchive (cyril.marchive@gmail.com)
+Cyril Marchive \(cyril.marchive@gmail.com\)
+
