@@ -14,8 +14,6 @@ Les services enregistrés sont les suivants :
 
 * service d'interaction bancaire : [http://localhost:8200/login](http://localhost:8200/login)
 
-  \
-
   Lien github : [https://github.com/langston8182/service-interaction](https://github.com/langston8182/service-interaction)
 
 Le formulaire de login est celui par defaut de spring security. il est situé au sein du serveur d'autorisation.  Port d'écoute : 8090
